@@ -121,6 +121,7 @@ function ObtenerKeyWords(idCampoTexto,idCampoResultado){
 					{
 						KeyWordsEncontradosFuerza[i]=w;
 						KeyWordsEncontrados[i]=palabra;
+						isMayor=false;
 						break;
 					}					
 					i++;
