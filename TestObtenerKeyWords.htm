@@ -1,0 +1,114 @@
+<html>  
+
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Obtiene KeyWords desde un Texto</title>  
+<script src="ObtenerKeyWords.js" type="text/javascript"></script>
+<script type="text/javascript">  
+
+
+  function ObtieneKeyWords(){  
+	var cant=document.getElementById("CantidadAObtener");	
+	var x=new ObtenerKeyWords("txtId","outputId");
+		x.OmitirSiguientePalabras(	["a","b","c","d","e","f","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+									"ha", "sus", "hacer", "vez", "ano","ser","tiene","ver","otro","nada","todo",
+									"uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez",
+									"estas","imagenes","imagen","puede","puedes","es","antes","porque","quien","cuando","muy","pasado","via","todos","sitio",
+									"sin", "mas", "fue", "anos", "esta", "este", "cual", "como", "para", "pero", "tras","hoy","manana","quien","cuando","desde","donde",
+									"lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo","tu","te","dar","contra","central","sobre",
+									"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+									"del", "no", "si", "el", "la", "de", "con", "un", "me", "les","pidio","llamo","sobra","va",
+									"una", "lo", "los", "nos", "se", "su", "ella", "las", "le","parece","bien","eso","esa",
+									"tambien","pueden","debe","mano","hijo","hija","dado","alta","durante","salido",
+									"que", "en", "por", "en", "al", ",", ";", "?", ".", "$", " "]
+								);
+		x.KeyWordsAObtener(cant.value);
+		x.Procesar();
+	}	
+  
+</script>  
+<style type="text/css">
+ div#content-layout{
+	font-family:tahoma;
+	font-size:16px;
+	color:#444;
+	width:800px;
+	margin:0 auto;
+	border:1px solid #c2c2c2;
+	padding:20px;
+	border-radius:20px;
+ }
+ #txtId{
+	width: 90%;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #C2C2C2;
+	margin: 0 5%;
+	height:150px;
+ }
+ #outputId{
+	width: 90%;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #C2C2C2;
+	margin: 0 5%;
+	font-family: tahoma;
+	font-size: 17px;
+	color:#444;
+ }
+ h2{color:#555; margin-left:44px;}
+ span{margin:0 0 0 44px; font-size:12px;}
+ code{
+	width: 90%;
+	border-radius: 5px;
+	margin: 0 5%;
+	font-size: 12px;
+	background-color: #EDFFB3;
+	display: block;
+	padding: 10px;
+	overflow: hidden;
+	margin: 10px auto;
+ }
+ #CantidadAObtener{text-align:center;}
+ h4{margin-left:44px;}
+</style>
+</head>  
+<body>  
+<div id="content-layout">
+<h2>Clase: ObtenerKeyWords </h2>  
+
+<span>Texto donde buscará los KeyWords... (Se activa en elvento onblur())</span>
+<textarea name="txt_text" id="txtId" onblur="ObtieneKeyWords()" ></textarea><br/><br/>  
+<h4>Propiedades</h4>
+<span>KeyWords obtenidos...</span>
+<input type="text" id="outputId"  />
+<br/>  <br/>  
+<span>Int: KeyWordsAObtener</span>
+<input id="CantidadAObtener" value="5" onblur="ObtieneKeyWords()" />
+<br/>
+<br/>  
+<span>String[]: OmitirSiguientePalabras</span>
+<code>
+["a","b","c","d","e","f","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+"esta","este","cual","como","para","pero","que","por","hoy","manana","quien","cuando","desde","donde",
+"lunes","martes","miercoles","jueves","viernes","sabado","domingo",
+"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",									
+"yo","tu","el","nosotros","vosotros","ellos","ellas","la","le","li","lo","lu","si","no",
+",", ";", "?", ".", "$", " ","#"];
+</code>
+<br/>
+<span>String: Sustituir.EstosCaracteres</span>
+<code>
+"ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+</code>
+<br/>
+<span>String: Sustituir.PorEstosCaracteres</span>
+<code>
+"AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+</code>
+
+<br/>
+
+<div>
+</body>  
+</html>  
