@@ -75,62 +75,73 @@ function ObtenerKeyWords(idCampoTexto,idCampoResultado){
 	
 	//Proceso de KeyWords
 	this.Procesar=function(){
-		_InicioPalabra="a";
-		KeyWordsEncontrados = new Array(_KeyWordsAObtener);
-		KeyWordsEncontradosFuerza = new Array(_KeyWordsAObtener);		
-		for(a=0;a<_KeyWordsAObtener;a++)
+		if(Texto!=null && Texto.value=="")
+			alert("Por favor ingrese texto en el campo para poder Obtener los KeyWords");
+		else
 		{
-			KeyWordsEncontrados[a]="";
-			KeyWordsEncontradosFuerza[a]=0;
-		}
-		var txt = this.Sustituir.Aplicar(Texto.value.replace(/[0-9]/g,'')).replace(/[^a-zA-Z]/g,' ').split(' ');	
-		var palabras = new Array();  
-		totalPalabras=txt.length;  	
-		for(i=0; i<totalPalabras; i++) 
-			this.RemoverPalabrasOmitidas(txt[i]);  
-		txt = _InicioPalabra.replace(/[^a-zA-Z0-9]/g,' ').split(' ');  
-		totalPalabras=txt.length;    
-		for (i=0; i<totalPalabras; i++) {  
-			if (!txt[i])  
-				continue;  
-			if (palabras[txt[i]] == null)  
-				palabras[txt[i]]=0;  
-			palabras[txt[i]]++;  
-		}  
-		salida = new Array();        
-		var palabrasPorIntervalo=Math.round(totalPalabras/_KeyWordsAObtener)
-		for (palabra in palabras) {  
-			salida[salida.length]= palabra +":" +palabras[palabra] + " Fuerza: " + Math.round((palabras[palabra]/totalPalabras)*100) +"%";    			
-			var w = Math.round((palabras[palabra]/totalPalabras)*100);  
-			if(!isNaN(w)) {  
-				var isMayor=false;
-				i=0;
-				while (i<_KeyWordsAObtener)
-				{
-					for(a=i;a<_KeyWordsAObtener;a++)
-					{			
-						if(w>KeyWordsEncontradosFuerza[a])						
-							isMayor=true;						
-						else
-						{
-							isMayor=false;
-							break;				
-						}
-					}				
-					if(isMayor)
+			_InicioPalabra="a";
+			KeyWordsEncontrados = new Array(_KeyWordsAObtener);
+			KeyWordsEncontradosFuerza = new Array(_KeyWordsAObtener);		
+			for(a=0;a<_KeyWordsAObtener;a++)
+			{
+				KeyWordsEncontrados[a]="";
+				KeyWordsEncontradosFuerza[a]=0;
+			}
+			var txt = this.Sustituir.Aplicar(Texto.value.replace(/[0-9]/g,'')).replace(/[^a-zA-Z]/g,' ').split(' ');	
+			var palabras = new Array();  
+			totalPalabras=txt.length;  	
+			for(i=0; i<totalPalabras; i++) 
+				this.RemoverPalabrasOmitidas(txt[i]);  
+			txt = _InicioPalabra.replace(/[^a-zA-Z0-9]/g,' ').split(' ');  
+			totalPalabras=txt.length;    
+			for (i=0; i<totalPalabras; i++) {  
+				if (!txt[i])  
+					continue;  
+				if (palabras[txt[i]] == null)  
+					palabras[txt[i]]=0;  
+				palabras[txt[i]]++;  
+			}  
+			salida = new Array();        
+			var palabrasPorIntervalo=Math.round(totalPalabras/_KeyWordsAObtener)
+			for (palabra in palabras) {  
+				salida[salida.length]= palabra +":" +palabras[palabra] + " Fuerza: " + Math.round((palabras[palabra]/totalPalabras)*100) +"%";    			
+				var w = Math.round((palabras[palabra]/totalPalabras)*100);  
+				if(!isNaN(w)) {  
+					var isMayor=false;
+					i=0;
+					while (i<_KeyWordsAObtener)
 					{
-						KeyWordsEncontradosFuerza[i]=w;
-						KeyWordsEncontrados[i]=palabra;
-						isMayor=false;
-						break;
-					}					
-					i++;
-				}		
-			
-			}    
-	   }  
-	  
-		this.KeyWords=KeyWordsEncontrados.toString().replace(/,/g,', ');
-		Salida.value=KeyWordsEncontrados.toString().replace(/,/g,', ');
+						for(a=i;a<_KeyWordsAObtener;a++)
+						{			
+							if(w>KeyWordsEncontradosFuerza[a])						
+								isMayor=true;						
+							else
+							{
+								isMayor=false;
+								break;				
+							}
+						}				
+						if(isMayor)
+						{
+							KeyWordsEncontradosFuerza[i]=w;
+							KeyWordsEncontrados[i]=palabra;
+							isMayor=false;
+							break;
+						}					
+						i++;
+					}		
+				
+				}    
+		   }  	
+			keyWords=KeyWordsEncontrados.toString().replace(/,/g,', ');		   
+			this.KeyWords=keyWords;
+			if(Salida.value=="")
+				Salida.value=keyWords;				
+			else
+			{
+				if(confirm("¿Ya existen estos KeyWords: ("+Salida.value.toUpperCase()+"), desea Reemplazarlos por estos: ("+keyWords.toUpperCase()+")"))
+					Salida.value=keyWords;
+			}
+		}
 	}
 }
