@@ -140,7 +140,12 @@ function ObtenerKeyWords(idCampoTexto,idCampoResultado){
 			else
 			{
 				if(confirm("¿Ya existen estos KeyWords: ("+Salida.value.toUpperCase()+"), desea Reemplazarlos por estos: ("+keyWords.toUpperCase()+")"))
+				{
 					Salida.value=keyWords;
+					Salida.focus();
+				}
+				else
+					Salida.focus();
 			}
 		}
 	}
